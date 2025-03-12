@@ -1,0 +1,24 @@
+.assetsList {
+    &__header {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px;
+        margin-bottom: 20px;
+        padding: 10px 0;
+    }
+
+    &__item {
+        text-align: center;
+    }
+
+    &__text {
+        font-size: 20px;
+        color: #333;
+    }
+
+    &__items {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}

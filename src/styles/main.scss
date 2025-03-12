@@ -1,0 +1,19 @@
+@use './_variables' as *;
+
+body {
+    padding: 42px;
+    font-family: $font-family;
+    font-size: $font-size-base;
+    background-color: $background-color;
+    color: $text-color;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
