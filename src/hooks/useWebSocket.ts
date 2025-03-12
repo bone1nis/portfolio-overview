@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { updatePrice } from "../features/portfolioSlice";
 
 type TickerData = {
-  s: string; // Символ валютной пары, например "BTCUSDT"
+  s: string; // Символ валютной пары
   P: string; // Процентное изменение за 24 часа
   c: string; // Текущая цена
 }
