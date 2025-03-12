@@ -1,13 +1,13 @@
 import React from 'react';
 import AssetItem from '../assetItem/AssetItem';
 import s from "./assetsList.module.scss"
-
-const items = [
-  { id: 1, name: "BCC", count: 1, price: 60000, allPrice: 6000000, changeIn24h: "15.2%", portfolioShare: "2.5%" },
-  { id: 2, name: "acc", count: 31, price: 600400, allPrice: 60000040, changeIn24h: "151.2%", portfolioShare: "25.5%" }
-];
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 const AssetsList: React.FC = () => {
+  const assets = useSelector((state: RootState) => state.portfolio.assets);
+  const portfolioAssets = useSelector((state: RootState) => state.portfolio.portfolioAssets);
+  
   return (
     <div className={s.assetsList}>
       <div className={s.assetsList__header}>
@@ -31,7 +31,7 @@ const AssetsList: React.FC = () => {
         </div>
       </div>
       <div className={s.assetsList__items}>
-        {items.map(item => <AssetItem item={item} key={item.id} />)}
+        {portfolioAssets.map(portfolioAsset => <AssetItem portfolioAsset={portfolioAsset} assets={assets} key={portfolioAsset.name} />)}
       </div>
     </div>
   );

@@ -1,9 +1,12 @@
 export type Asset = {
-    id: number;
+    name: string;
+    price: string;
+    percentChange24h: string;
+}
+
+export type PortfolioAsset = {
     name: string;
     count: number;
-    price: number;
-    allPrice: number;
-    changeIn24h: string;
-    portfolioShare: string;
+    totalPrice: number;
+    portfolioPercentage: number;
 }

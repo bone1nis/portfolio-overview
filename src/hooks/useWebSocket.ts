@@ -1,27 +1,44 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updatePrice } from "../features/portfolioSlice";
 
-const useWebSocket = (url: string) => {
-  const [data, setData] = useState(null);
+type TickerData = {
+  s: string; // Символ валютной пары, например "BTCUSDT"
+  P: string; // Процентное изменение за 24 часа
+  c: string; // Текущая цена
+}
+
+const useWebSocket = () => {
+  const dispatch = useDispatch();
+  const wsUrl = "wss://stream.binance.com:9443/stream?streams=!ticker@arr";
 
   useEffect(() => {
-    const socket = new WebSocket(url);
+    const socket = new WebSocket(wsUrl);
+
+    socket.onopen = () => {
+      console.log("WebSocket соединение установлено");
+    };
 
     socket.onmessage = (event) => {
-      const parsedData = JSON.parse(event.data);
-      console.log(parsedData);
-      setData(parsedData);
+      const data = JSON.parse(event.data);
+
+      if (data?.data) {
+        data.data.forEach((item: TickerData) => {
+          const { s: name, c: price, P: percentChange24h } = item;
+
+          dispatch(updatePrice({ name, price, percentChange24h }));
+        });
+      }
     };
 
-    socket.onerror = (error) => {
-      console.error("WebSocket Error: ", error);
-    };
+    socket.onerror = (e) => console.error(e);
 
-    return () => {
-      socket.close();
-    };
-  }, [url]);
+    socket.onclose = () => console.log("WebSocket соединение закрыто");
 
-  return data;
+    return () => socket.close();
+  }, [dispatch]);
+
+  return null;
 };
 
 export default useWebSocket;
