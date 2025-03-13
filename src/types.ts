@@ -10,3 +10,12 @@ export type PortfolioAsset = {
     totalPrice: number;
     portfolioPercentage: number;
 }
+
+export type AssetData = {
+    name: string;
+    price: string;
+    percentChange24h: string;
+    count: number;
+    totalPrice: number;
+    portfolioPercentage: number;
+}

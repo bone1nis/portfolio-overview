@@ -8,8 +8,8 @@ interface PortfolioState {
 
 const initialState: PortfolioState = {
     assets: [
-        { name: "BTCUSDT", price: "0", percentChange24h: "0%" },
-        { name: "ETHUSDT", price: "0", percentChange24h: "0%" },
+        { name: "BTCUSDT", price: "0", percentChange24h: "0" },
+        { name: "ETHUSDT", price: "0", percentChange24h: "0" },
     ],
     portfolioAssets: [
         { name: "BTCUSDT", count: 2, totalPrice: 30000, portfolioPercentage: 20 }
@@ -25,6 +25,8 @@ const portfolioSlice = createSlice({
             if (asset) {
                 asset.price = action.payload.price;
                 asset.percentChange24h = action.payload.percentChange24h;
+            } else {
+                state.assets = [...state.assets, action.payload]
             }
         }
     },

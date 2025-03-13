@@ -3,11 +3,17 @@ import AssetItem from '../assetItem/AssetItem';
 import s from "./assetsList.module.scss"
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import { AssetData } from '../../types';
 
 const AssetsList: React.FC = () => {
   const assets = useSelector((state: RootState) => state.portfolio.assets);
   const portfolioAssets = useSelector((state: RootState) => state.portfolio.portfolioAssets);
-  
+
+  const assetsData = portfolioAssets.map(portfolioAsset => {
+    const asset = assets.find(asset => asset.name === portfolioAsset.name);
+    return asset ? { ...portfolioAsset, ...asset } : null;
+  }).filter(Boolean) as AssetData[];
+
   return (
     <div className={s.assetsList}>
       <div className={s.assetsList__header}>
@@ -31,7 +37,7 @@ const AssetsList: React.FC = () => {
         </div>
       </div>
       <div className={s.assetsList__items}>
-        {portfolioAssets.map(portfolioAsset => <AssetItem portfolioAsset={portfolioAsset} assets={assets} key={portfolioAsset.name} />)}
+        {assetsData.map(assetData => <AssetItem assetData={assetData} key={assetData.name} />)}
       </div>
     </div>
   );

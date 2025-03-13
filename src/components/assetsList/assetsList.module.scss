@@ -1,3 +1,5 @@
+@use '../../styles/variables' as *;
+
 .assetsList {
     &__header {
         display: grid;
@@ -13,7 +15,7 @@
 
     &__text {
         font-size: 20px;
-        color: #333;
+        color: $text-color;
     }
 
     &__items {

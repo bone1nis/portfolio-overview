@@ -4,6 +4,7 @@ $primary-color: #e74c3c;
 $secondary-color: #8e44ad;
 $accent-color: #f39c12;
 $background-color: #f9f9f9;
+$dark-color: #000;
 $text-color: #2c3e50;
 $border-color: #bdc3c7;
 $hover-color: color.adjust($primary-color, $lightness: -10%);
@@ -18,3 +19,5 @@ $line-height-base: 1.5;
 
 $border-radius: 20px;
 $transition-speed: 0.3s;
+
+$button-text: #fff;

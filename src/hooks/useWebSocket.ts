@@ -21,11 +21,9 @@ const useWebSocket = () => {
 
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
-
       if (data?.data) {
         data.data.forEach((item: TickerData) => {
           const { s: name, c: price, P: percentChange24h } = item;
-
           dispatch(updatePrice({ name, price, percentChange24h }));
         });
       }
