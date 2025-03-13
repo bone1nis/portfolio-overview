@@ -1,9 +1,12 @@
-import React from 'react';
-import AssetItem from '../assetItem/AssetItem';
-import s from "./assetsList.module.scss"
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+
+import AssetItem from '../assetItem/AssetItem';
+
 import { AssetData } from '../../types';
+
+import s from "./assetsList.module.scss"
+
 
 const AssetsList: React.FC = () => {
   const assets = useSelector((state: RootState) => state.portfolio.assets);

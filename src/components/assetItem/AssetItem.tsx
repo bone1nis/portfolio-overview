@@ -1,6 +1,7 @@
-import React from 'react';
-import s from './assetsItem.module.scss';
 import { AssetData } from '../../types';
+
+import s from './assetsItem.module.scss';
+
 
 type AssetItemProps = {
   assetData: AssetData;

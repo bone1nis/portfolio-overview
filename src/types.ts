@@ -19,3 +19,5 @@ export type AssetData = {
     totalPrice: number;
     portfolioPercentage: number;
 }
+
+export type NewPortfolioAsset = Pick<AssetData, "name" | "count" | "price">;

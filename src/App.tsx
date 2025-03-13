@@ -24,7 +24,7 @@ const App: React.FC = () => {
       </main>
 
       <Modal visible={isModalVisible} onClose={closeModal}>
-        <AddAssetForm/>
+        <AddAssetForm onClose={closeModal}/>
       </Modal>
     </>
   );

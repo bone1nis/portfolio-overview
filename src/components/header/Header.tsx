@@ -1,6 +1,5 @@
-import React from 'react';
-
 import s from "./header.module.scss"
+
 
 type HeaderProps = {
   openModal: () => void;
