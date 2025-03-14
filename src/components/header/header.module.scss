@@ -2,22 +2,34 @@
 
 .header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    padding: 40px;
     width: 100%;
+
+    @media (max-width: 500px) {
+        padding: 2px;
+        gap: 10px;
+        flex-direction: column;
+    }
 
     &__title {
         text-transform: uppercase;
+        font-size: $font-size-title;
     }
 
     &__button {
+        @extend %base-button;
+        max-width: 150px;
         background-color: $primary-color;
-        color: white;
-        padding: 20px 50px;
-        border-radius: $border-radius;
-        transition: background-color $transition-speed;
+        padding: 20px 40px;
 
         &:hover {
             background-color: $hover-color;
+        }
+
+        &:disabled {
+            background-color: $disabled-color;
         }
     }
 }

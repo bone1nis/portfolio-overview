@@ -1,3 +1,5 @@
+@use '../../styles/variables' as *;
+
 .assetsList {
     &__header {
         display: grid;
@@ -7,18 +9,34 @@
         padding: 10px 0;
     }
 
-    &__item {
+    &__headerItem {
         text-align: center;
     }
 
-    &__text {
-        font-size: 20px;
-        color: #333;
+    &__headerText {
+        font-size: $font-size-base;
+        color: $text-color;
+        @media (max-width: 600px) {
+            font-size: $font-size-mobile;
+        }
     }
 
-    &__items {
+    &__container {
+        height: 500px;
+        position: relative;
+        overflow-y: auto;
+    }
+
+    &__itemsWrapper {
+        position: absolute;
         display: flex;
         flex-direction: column;
         gap: 10px;
+        width: 100%;
+    }
+
+    &__items {
+        position: absolute;
+        width: 100%;
     }
 }

@@ -1,7 +1,14 @@
 @use './_variables' as *;
 
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    padding: 42px;
     font-family: $font-family;
     font-size: $font-size-base;
     background-color: $background-color;
@@ -9,11 +16,62 @@ body {
 }
 
 button {
+    font-size: $font-size-base;
     border: none;
     cursor: pointer;
+    background: none;
+}
+
+input,
+textarea,
+select {
+    font-family: $font-family;
+    font-size: $font-size-base;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+img,
+picture,
+video,
+svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 .container {
-    width: 1200px;
+    width: 100%;
+    max-width: 1440px;
     margin: 0 auto;
+    padding: 0 20px;
+
+    @media (max-width: 1024px) {
+        max-width: 100%;
+        padding: 0 16px;
+    }
+
+    @media (max-width: 768px) {
+        padding: 0 12px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 0 10px;
+    }
 }
