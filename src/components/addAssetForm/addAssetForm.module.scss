@@ -2,6 +2,7 @@
 
 .addAssetForm {
     padding: 30px;
+
     &__input {
         background-color: $background-color;
         border-bottom: 1px solid $dark-color;
@@ -11,10 +12,10 @@
         padding: 4px 0;
     }
 
-    &__list {
+    &__itemsList {
         height: 400px;
         overflow-y: auto;
-        overflow-x:hidden;
+        overflow-x: hidden;
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -37,19 +38,16 @@
     &__buttons {
         display: flex;
         gap: 10px;
+
+        @media (max-width: 500px) {
+            flex-direction: column;
+        }
     }
 
     &__button {
+        @extend %base-button;
         background-color: $primary-color;
-        color: $button-text;
-        height: 30px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px 30px;
-        border-radius: $border-radius;
-        transition: background-color $transition-speed;
+        padding: 20px 40px;
 
         &:hover {
             background-color: $hover-color;

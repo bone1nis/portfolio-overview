@@ -1,15 +1,20 @@
-import { useState } from 'react';
-import AssetsList from './components/assetsList/AssetsList';
+import { useEffect, useState } from 'react';
 
+import { useDispatch } from 'react-redux';
+
+import AssetsList from './components/assetsList/AssetsList';
 import Header from './components/header/Header';
-import useWebSocket from './hooks/useWebSocket';
 import AddAssetForm from './components/addAssetForm/AddAssetForm';
 import Modal from './components/modal/Modal';
 
 const App: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  useWebSocket();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: 'socket/connect' });
+  }, [dispatch]);
 
   const openModal = () => setIsModalVisible(true);
   const closeModal = () => setIsModalVisible(false);
@@ -17,19 +22,17 @@ const App: React.FC = () => {
   return (
     <>
       <Header openModal={openModal} />
-      <main>
+      <main style={{ marginTop: "100px" }}>
         <div className="container">
           <AssetsList />
         </div>
       </main>
 
       <Modal visible={isModalVisible} onClose={closeModal}>
-        <AddAssetForm onClose={closeModal}/>
+        <AddAssetForm onClose={closeModal} />
       </Modal>
     </>
   );
 };
 
 export default App;
-
-<input type='button' />

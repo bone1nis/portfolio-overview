@@ -1,6 +1,9 @@
+import { useDispatch } from 'react-redux';
+
 import { AssetData } from '../../types';
 
 import s from './assetsItem.module.scss';
+import { removePortfolioAssets } from '../../features/portfolioSlice';
 
 
 type AssetItemProps = {
@@ -8,6 +11,11 @@ type AssetItemProps = {
 };
 
 const AssetItem: React.FC<AssetItemProps> = ({ assetData }) => {
+  const dispatch = useDispatch();
+
+  const onClick = (assetName: string) => {
+    dispatch(removePortfolioAssets(assetName))
+  };
 
   const formatCount = assetData.count.toFixed(5);
   const formatPercentChange24h = Number(assetData!.percentChange24h).toFixed(2);
@@ -16,7 +24,16 @@ const AssetItem: React.FC<AssetItemProps> = ({ assetData }) => {
   const formatPortfolioPercentage = assetData.portfolioPercentage.toFixed(2);
 
   return (
-    <div className={s.assetItem}>
+    <div
+      className={s.assetItem}
+      onClick={() => onClick(assetData.name)}
+      tabIndex={1}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          onClick(assetData.name);
+        }
+      }}
+    >
       <div className={s.assetItem__block}>
         <h6 className={s.assetItem__text}>{assetData.name}</h6>
       </div>

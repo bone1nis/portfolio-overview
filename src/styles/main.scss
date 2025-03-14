@@ -9,7 +9,6 @@
 }
 
 body {
-    padding: 42px;
     font-family: $font-family;
     font-size: $font-size-base;
     background-color: $background-color;
@@ -58,6 +57,21 @@ svg {
 }
 
 .container {
-    width: 1200px;
+    width: 100%;
+    max-width: 1440px;
     margin: 0 auto;
+    padding: 0 20px;
+
+    @media (max-width: 1024px) {
+        max-width: 100%;
+        padding: 0 16px;
+    }
+
+    @media (max-width: 768px) {
+        padding: 0 12px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 0 10px;
+    }
 }

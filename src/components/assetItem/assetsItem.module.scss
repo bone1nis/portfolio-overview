@@ -1,11 +1,18 @@
 @use '../../styles/variables' as *;
 
 .assetItem {
+    height: 50px;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 10px;
     padding: 10px;
     border-radius: $border-radius;
+    cursor: pointer;
+    transition: background-color $transition-speed;
+
+    &:hover {
+        background-color: $dark-background-color;
+    }
 
     &__block {
         text-align: center;
@@ -15,5 +22,9 @@
         font-size: $font-size-base;
         font-weight: normal;
         color: $text-color;
+
+        @media (max-width: 600px) {
+            font-size: $font-size-mobile;
+        }
     }
 }

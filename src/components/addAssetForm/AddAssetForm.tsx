@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useState, useCallback, useMemo } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { addPortfolioAssets } from "../../features/portfolioSlice";
@@ -79,10 +80,19 @@ const AddAssetForm: React.FC<AddAssetFormProps> = ({ onClose }) => {
         value={searchQuery}
         onChange={handleSearchChange}
       />
-      <div className={s.addAssetForm__list}>
+      <div className={s.addAssetForm__itemsList}>
         {formattedAssets.length > 0 &&
           formattedAssets.map((asset) => (
-            <div className={s.addAssetForm__item} key={asset.name} onClick={() => onClick(asset)}>
+            <div
+              className={s.addAssetForm__item}
+              key={asset.name}
+              onClick={() => onClick(asset)}
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  onClick(asset);
+                }
+              }}>
               <span>{asset.name}</span>
               <span>${asset.price}</span>
               <span>{asset.percentChange24h}%</span>
@@ -93,7 +103,7 @@ const AddAssetForm: React.FC<AddAssetFormProps> = ({ onClose }) => {
       {currentAsset && (
         <>
           <h4 className={s.addAssetForm__asset}>
-            {currentAsset.name}: {currentAsset.price}
+            {currentAsset.name}: {currentAsset.price}$
           </h4>
           <form onSubmit={handleSubmit}>
             <input
@@ -104,12 +114,21 @@ const AddAssetForm: React.FC<AddAssetFormProps> = ({ onClose }) => {
               onChange={onChangeCount}
               required
               min="1"
+              tabIndex={0}
             />
             <div className={s.addAssetForm__buttons}>
-              <button className={s.addAssetForm__button} type="submit" disabled={currentAsset.count <= 0}>
+              <button
+                className={s.addAssetForm__button}
+                type="submit"
+                disabled={currentAsset.count <= 0}
+                tabIndex={0}>
                 добавить
               </button>
-              <button className={s.addAssetForm__button} type="button" onClick={handleCancel}>
+              <button
+                className={s.addAssetForm__button}
+                type="button"
+                onClick={handleCancel}
+                tabIndex={0}>
                 отмена
               </button>
             </div>
